@@ -1,0 +1,247 @@
+@import "tailwindcss";
+
+@import "tw-animate-css";
+@plugin '../lib/hero.ts';
+@source '../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* PureFi customer dashboard: light, high-clarity banking system */
+  --bright-green: #9fe870;
+  --forest-green: #163300;
+  --dark-green: #163300;
+  --white: #ffffff;
+  --white-tinted: #f7f8f2;
+
+  /* Semantic Role-Based Tokens */
+  --background: var(--white);
+  --foreground: var(--forest-green);
+  --surface: var(--white-tinted);
+
+  --primary: var(--bright-green);
+  --primary-foreground: var(--forest-green);
+
+  --secondary: var(--forest-green);
+  --secondary-foreground: var(--white);
+
+  --muted: #f1f3ed;
+  --muted-foreground: #667085;
+
+  --accent: var(--bright-green);
+  --accent-foreground: var(--forest-green);
+
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+
+  --border: #e3e7df;
+  --input: #d9dfd4;
+  --ring: var(--bright-green);
+
+  --radius: 1rem;
+
+  /* Chart & Sidebar defaults */
+  --sidebar-background: var(--white);
+  --sidebar-foreground: var(--forest-green);
+
+  /* Dashboard-specific color tokens (Wise-inspired) */
+  --db-primary: #9fe870;
+  --db-primary-hover: #8bd758;
+  --db-primary-subtle: #eef9e7;
+  --db-text-primary: #163300;
+  --db-text-secondary: #50604c;
+  --db-text-muted: #77856f;
+  --db-border: #e3e7df;
+  --db-surface: #ffffff;
+  --db-bg: #f7f8f2;
+  --db-hover: #f1f5ee;
+  --db-warning: #a65f00;
+  --db-success: #18794e;
+  --db-danger: #c4320a;
+}
+
+.dark {
+  --background: var(--forest-green);
+  --foreground: var(--bright-green);
+  --surface: rgba(255, 255, 255, 0.05);
+
+  --primary: var(--bright-green);
+  --primary-foreground: var(--forest-green);
+
+  --secondary: var(--white);
+  --secondary-foreground: var(--forest-green);
+
+  --muted: rgba(255, 255, 255, 0.1);
+  --muted-foreground: var(--bright-green);
+
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.1);
+}
+
+@theme {
+  /* Fluid Typography Scale */
+  --font-size-display: clamp(2.5rem, 5vw, 4rem);
+  --font-size-h1: clamp(2rem, 4vw, 3rem);
+  --font-size-h2: clamp(1.5rem, 3vw, 2.25rem);
+  --font-size-h3: clamp(1.25rem, 2.2vw, 1.75rem);
+  --font-size-body: clamp(1rem, 1.2vw, 1.125rem);
+  --font-size-small: clamp(0.875rem, 1vw, 1rem);
+  --font-size-caption: clamp(0.75rem, 0.8vw, 0.875rem);
+
+  /* Fluid Spacing Scale */
+  --spacing-1: clamp(0.25rem, 0.4vw, 0.5rem);
+  --spacing-2: clamp(0.5rem, 0.8vw, 0.75rem);
+  --spacing-3: clamp(0.75rem, 1.2vw, 1rem);
+  --spacing-4: clamp(1rem, 1.6vw, 1.25rem);
+  --spacing-5: clamp(1.5rem, 2vw, 2rem);
+  --spacing-6: clamp(2rem, 3vw, 3rem);
+  --spacing-7: clamp(3rem, 4vw, 4rem);
+  --spacing-8: clamp(4rem, 5vw, 5rem);
+
+  /* Semantic Colors */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-surface: var(--surface);
+  --color-green-text: var(--dark-green);
+  --color-forest-green: var(--forest-green);
+
+  /* Dashboard colors */
+  --color-db-primary: #9fe870;
+  --color-db-primary-hover: #8bd758;
+  --color-db-primary-subtle: #eef9e7;
+  --color-db-text-primary: #163300;
+  --color-db-text-secondary: #50604c;
+  --color-db-text-muted: #77856f;
+  --color-db-border: #e3e7df;
+  --color-db-surface: #ffffff;
+  --color-db-bg: #f7f8f2;
+  --color-db-hover: #f1f5ee;
+  --color-db-warning: #a65f00;
+  --color-db-success: #18794e;
+
+  /* Fonts */
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  /* Shadows & Radius */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --shadow-premium: 0 10px 40px -10px rgba(0, 0, 0, 0.1);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: "cv11", "ss01";
+    -webkit-font-smoothing: antialiased;
+  }
+
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    @apply focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest-green;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply tracking-tighter font-bold;
+  }
+}
+
+/* Customer shell base surface — keeps the dashboard background consistent */
+[data-customer-shell] {
+  background: var(--db-bg);
+  color: var(--db-text-primary);
+}
+
+/* Suppress legacy navigation elements that leak from admin-oriented pages */
+[data-customer-shell] [data-legacy-dashboard-header],
+[data-customer-shell] main [data-mobile-bottom-nav] {
+  display: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Custom Utilities */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .glass {
+    @apply bg-white/70 backdrop-blur-md border border-white/20;
+  }
+  .glass-dark {
+    @apply bg-black/40 backdrop-blur-md border border-white/10;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 4s ease-in-out infinite;
+}
+
+/* Font Faces */
+@font-face {
+  font-family: Inter;
+  src: url("../public/assets/font/Inter-VariableFont_opsz,wght.ttf");
+  font-weight: 100 900;
+  font-display: swap;
+}
