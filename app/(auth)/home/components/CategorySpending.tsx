@@ -1,6 +1,5 @@
 "use client"
 import { useEffect, useMemo } from 'react';
-import { motion } from 'framer-motion';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import Card from '@/app/components/base/Card';
 import { useMutation, useQuery } from 'convex/react';
@@ -109,7 +108,11 @@ export default function CategorySpending() {
                 color: 'var(--db-text-primary)'
               }}
               itemStyle={{ color: 'var(--db-primary)' }}
-              formatter={(value: number) => `$${value.toLocaleString()}`}
+              formatter={(value) => {
+                const raw = Array.isArray(value) ? value[0] : value;
+                const num = typeof raw === 'number' ? raw : Number(raw ?? 0);
+                return `${currencySymbol}${num.toLocaleString()}`;
+              }}
             />
           </PieChart>
         </ResponsiveContainer>
