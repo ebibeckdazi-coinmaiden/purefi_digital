@@ -5,8 +5,6 @@ import { cn } from "@/lib/utils";
 import { 
   Home, 
   Card, 
-  Users, 
-  CardRecieve, 
   GraphUp, 
   Settings, 
   Logout 
@@ -65,7 +63,7 @@ export function Sidebar() {
           <div className="flex items-center gap-3 px-2 py-1">
             <div className="relative w-10 h-10 rounded-full overflow-hidden bg-muted border border-border">
               {user.image ? (
-                <Image src={user.image} alt={user.firstName} fill className="object-cover" />
+                <Image src={user.image} alt={user.firstName as string} fill className="object-cover" />
               ) : (
                 <div className="w-full h-full flex items-center justify-center text-forest-green font-bold bg-primary/30">
                   {user.firstName?.[0]}
