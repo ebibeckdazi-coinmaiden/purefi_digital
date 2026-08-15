@@ -15,7 +15,7 @@ export default function TasksList() {
 
   const tasks = useMemo(() => {
     const hasIdentity = !!user;
-    const hasAccounts = (accounts ?? []).length > 0;
+    // const hasAccounts = (accounts ?? []).length > 0;
     const hasLocal = (accounts ?? []).some(
       (a) => a.type === "local" || a.kind === "local",
     );
@@ -74,7 +74,7 @@ export default function TasksList() {
                 title={task.title}
                 subtitle={task.subtitle}
                 badge={task.badge}
-                badgeTone={task.badgeTone}
+                badgeTone={task.badgeTone as "success" | "neutral" | "warning" | "danger" | undefined }
                 action={
                   task.action ? (
                     <a
