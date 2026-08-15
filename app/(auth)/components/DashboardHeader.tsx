@@ -23,7 +23,7 @@ export function DashboardHeader() {
         <div className="flex items-center gap-3 pl-4 border-l border-border cursor-pointer group">
           <div className="relative w-8 h-8 rounded-full overflow-hidden bg-muted border border-border">
             {user?.image ? (
-              <Image src={user.image} alt={user.firstName} fill className="object-cover" />
+              <Image src={user.image} alt={user.firstName as string} fill className="object-cover" />
             ) : (
               <div className="w-full h-full flex items-center justify-center text-forest-green font-bold bg-primary/30 text-xs">
                 {user?.firstName?.[0]}
