@@ -5,6 +5,8 @@ import { cn } from "@/lib/utils";
 import { 
   Home, 
   Card, 
+  User, 
+  CardRecive, 
   GraphUp, 
   Settings, 
   Logout 
@@ -16,8 +18,8 @@ import Image from "next/image";
 const navItems = [
   { name: "Home", href: "/home", icon: Home },
   { name: "Card", href: "/cards", icon: Card },
-  { name: "Recipients", href: "/transfers", icon: Users },
-  { name: "Payments", href: "/convert", icon: CardRecieve },
+  { name: "Recipients", href: "/transfers", icon: User },
+  { name: "Payments", href: "/convert", icon: CardRecive },
   { name: "Analytics", href: "/analytics", icon: GraphUp },
   { name: "Settings", href: "/settings", icon: Settings },
 ];
