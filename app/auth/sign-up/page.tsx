@@ -65,10 +65,11 @@ export default function SignUpPage() {
           {
             onSuccess: async () => {
               await createUser({ email: value.email });
-              router.push("/verify-email");
               await authClient.sendVerificationEmail({
                 email: value.email,
+                callbackURL: "/onboarding",
               });
+              router.push("/verify-email");
               setIsSubmitting(false);
             },
             onError: (ctx) => {
