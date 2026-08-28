@@ -28,7 +28,7 @@ export const authComponent = createClient<DataModel, typeof authSchema>(
 export const createAuthOptions = (ctx: GenericCtx<DataModel>) => {
   return {
     baseURL: siteUrl,
-    trustedOrigins: ["http://localhost:3000", "https://purefidigital.com"],
+    trustedOrigins: ["http://localhost:3000", "https://purefidigital.com", "https://www.purefidigital.com"],
     socialProviders: {
       google: {
         clientId: process.env.GOOGLE_CLIENT_ID as string,
@@ -40,7 +40,7 @@ export const createAuthOptions = (ctx: GenericCtx<DataModel>) => {
       enabled: true,
       sendResetPassword: async ({ user, url }) => {
         await getResend().emails.send({
-          from: "Arxforth <onboarding@arxforthdigital.com>",
+          from: "Arxforth <onboarding@purefidigital.com>",
           to: user.email,
           subject: "Reset your password",
           html: await render(
@@ -52,7 +52,7 @@ export const createAuthOptions = (ctx: GenericCtx<DataModel>) => {
     emailVerification: {
       sendVerificationEmail: async ({ user, url }) => {
         await getResend().emails.send({
-          from: "Arxforth <onboarding@arxforthdigital.com>",
+          from: "Arxforth <onboarding@purefidigital.com>",
           to: user.email,
           subject: "Verify your email",
           html: await render(

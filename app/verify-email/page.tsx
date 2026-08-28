@@ -50,7 +50,7 @@ export default function VerifyEmailPage() {
     try {
       await authClient.sendVerificationEmail({
         email: authUser.email,
-        callbackURL: 'https://www.arxforthdigital.com/onboarding'
+        callbackURL: 'https://www.purefidigital.com/onboarding'
       });
       setResendStatus('success');
     } catch (error) {
@@ -68,7 +68,7 @@ export default function VerifyEmailPage() {
         showBackToWebsite={false}
         subtitle={
           <span>
-            We've sent you a verification link to {user?.email ? <span className="text-white font-medium">{user?.email}</span> : 'your email address'}.
+            We&apos;ve sent you a verification link to {user?.email ? <span className="text-white font-medium">{user?.email}</span> : 'your email address'}.
           </span>
         }
       >
@@ -81,7 +81,7 @@ export default function VerifyEmailPage() {
           <p className="text-gray-400 text-sm leading-relaxed">
             Click the link in the email we sent to verify your account.
             <br />
-            If you don't see it, check your spam folder.
+            If you don&apos;t see it, check your spam folder.
           </p>
         </div>
 

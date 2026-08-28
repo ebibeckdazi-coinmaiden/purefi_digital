@@ -8,7 +8,7 @@ export async function POST(request: Request) {
     const { email, name} = await request.json();
 
     const { data, error } = await getResend().emails.send({
-      from: "Arxforth <onboarding@arxforthdigital.com>",
+      from: "Arxforth <onboarding@purefidigital.com>",
       to: [email],
       subject: "Next Step Information",
       react: ImsNextStepEmail({email,name}),
