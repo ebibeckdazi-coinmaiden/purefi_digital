@@ -8,7 +8,6 @@ import { api } from '@/convex/_generated/api';
 import { useRouter } from 'next/navigation';
 import { AuthGuard } from '@/app/components/auth/AuthGuard';
 import { motion } from 'framer-motion';
-import Link from 'next/link';
 
 export default function VerifyEmailPage() {
   const { data: session, isPending } = authClient.useSession();
@@ -17,6 +16,7 @@ export default function VerifyEmailPage() {
   const router = useRouter();
   const [isResending, setIsResending] = useState(false);
   const [resendStatus, setResendStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [isSigningOut, setIsSigningOut] = useState(false);
 
   const emailVerified = session?.user?.emailVerified === true;
   const email = session?.user?.email ?? user?.email;
@@ -62,6 +62,17 @@ export default function VerifyEmailPage() {
       setResendStatus('error');
     } finally {
       setIsResending(false);
+    }
+  };
+
+  const handleSwitchAccount = async (destination: '/auth/sign-in' | '/auth/sign-up') => {
+    setIsSigningOut(true);
+    try {
+      await authClient.signOut();
+    } catch (error) {
+      console.error(error);
+    } finally {
+      router.push(destination);
     }
   };
 
@@ -136,12 +147,26 @@ export default function VerifyEmailPage() {
             )}
           </div>
 
-          <Link
-            href="/auth/sign-in"
-            className="text-luxury-gold hover:text-soft-gold transition-colors text-sm font-medium"
-          >
-            Back to sign in
-          </Link>
+          <div className="flex items-center justify-center gap-4 text-sm">
+            <button
+              onClick={() => handleSwitchAccount('/auth/sign-in')}
+              disabled={isSigningOut}
+              className="text-luxury-gold hover:text-soft-gold transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {isSigningOut ? 'Signing out...' : 'Back to sign in'}
+            </button>
+            <span className="text-gray-600">·</span>
+            <button
+              onClick={() => handleSwitchAccount('/auth/sign-up')}
+              disabled={isSigningOut}
+              className="text-luxury-gold hover:text-soft-gold transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              Create a different account
+            </button>
+          </div>
+          <p className="text-gray-500 text-xs text-center">
+            Wrong email? Sign out above and try again.
+          </p>
         </motion.div>
       </AuthLayout>
     </AuthGuard>

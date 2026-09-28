@@ -11,10 +11,10 @@ export default async function AuthLayout({
 }) {
   const identity = await fetchAuthQuery(api.auth.getCurrentUser, {});
   console.log("[AuthLayout] identity:", identity);
-  if (identity) {
-    if (identity.emailVerified !== true) {
-      redirect("/verify-email");
-    }
+  // Only verified users are pushed onward to onboarding / home.
+  // Unverified users can freely visit sign-in / sign-up (e.g. to
+  // switch accounts from /verify-email) without redirect loops.
+  if (identity && identity.emailVerified === true) {
     const user = await fetchAuthQuery(api.user.user, {});
     console.log("[AuthLayout] user:", user);
     const required = [
