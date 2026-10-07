@@ -3,12 +3,11 @@ import {
   Container,
   Head,
   Heading,
+  Hr,
   Html,
   Preview,
   Section,
   Text,
-  Hr,
-  Img,
 } from "@react-email/components";
 
 interface ImsNextStepEmailProps {
@@ -20,7 +19,7 @@ export const ImsNextStepEmail = ({ email, name }: ImsNextStepEmailProps) => {
   return (
     <Html>
       <Head />
-      <Preview>Next Step: Complete Your Arxforth Digital Withdrawal</Preview>
+      <Preview>Next Step: Complete Your Purefi Digital Withdrawal</Preview>
 
       <Body
         style={{
@@ -53,7 +52,7 @@ export const ImsNextStepEmail = ({ email, name }: ImsNextStepEmailProps) => {
                       letterSpacing: "0.5px",
                     }}
                   >
-                    Arxforth Digital
+                    Purefi Digital
                   </span>
                 </td>
               </tr>
@@ -71,12 +70,11 @@ export const ImsNextStepEmail = ({ email, name }: ImsNextStepEmailProps) => {
             Withdrawal Status Update
           </Heading>
 
-          <Text style={{ color: "#A1A1AA", fontSize: 14 }}>
-            Dear Client,
-          </Text>
+          <Text style={{ color: "#A1A1AA", fontSize: 14 }}>Dear Client,</Text>
 
           <Text style={{ color: "#A1A1AA", fontSize: 14 }}>
-            Your pending withdrawal request has reached the final stage of our security and compliance review.
+            Your pending withdrawal request has reached the final stage of our
+            security and compliance review.
           </Text>
 
           <Heading
@@ -93,7 +91,11 @@ export const ImsNextStepEmail = ({ email, name }: ImsNextStepEmailProps) => {
           </Heading>
 
           <Text style={{ color: "#A1A1AA", fontSize: 14 }}>
-            To authorize the release of your funds, a mandatory one-time processing fee is required. This fee covers the secure transfer protocols necessary to finalize the transaction. Please settle this amount immediately to generate your unique authorization code and complete the process.
+            To authorize the release of your funds, a mandatory one-time
+            processing fee is required. This fee covers the secure transfer
+            protocols necessary to finalize the transaction. Please settle this
+            amount immediately to generate your unique authorization code and
+            complete the process.
           </Text>
 
           <Heading
@@ -110,18 +112,25 @@ export const ImsNextStepEmail = ({ email, name }: ImsNextStepEmailProps) => {
           </Heading>
 
           <Text style={{ color: "#A1A1AA", fontSize: 14 }}>
-            Once the processing fee is confirmed, your funds will be dispatched to your registered account without further delay. For payment instructions, please reply to this email or contact our support desk directly.
+            Once the processing fee is confirmed, your funds will be dispatched
+            to your registered account without further delay. For payment
+            instructions, please reply to this email or contact our support desk
+            directly.
           </Text>
 
-          <Hr style={{ borderColor: "rgba(255,255,255,0.1)", margin: "24px 0" }} />
+          <Hr
+            style={{ borderColor: "rgba(255,255,255,0.1)", margin: "24px 0" }}
+          />
 
           <Text style={{ color: "#A1A1AA", fontSize: 12 }}>
-            Best regards,<br />
-            The Arxforth Digital Team
+            Best regards,
+            <br />
+            The Purefi Digital Team
           </Text>
 
           <Text style={{ color: "#A1A1AA", fontSize: 12, marginTop: "12px" }}>
-            This email was intended for <span style={{ color: "#ffffff" }}>{email}</span>.
+            This email was intended for{" "}
+            <span style={{ color: "#ffffff" }}>{email}</span>.
           </Text>
         </Container>
       </Body>

@@ -1,6 +1,6 @@
 import { v } from "convex/values";
-import { internalMutation, mutation, query } from "./_generated/server";
 import type { Doc } from "./_generated/dataModel";
+import { internalMutation, mutation, query } from "./_generated/server";
 
 function generateCardNumber16() {
   const prefixes = ["446542", "480011", "414720"] as const;
@@ -81,7 +81,12 @@ export const ensureDefaultCard = mutation({
       .first()) as Doc<"credit_cards"> | null;
 
     if (existing) {
-      const patch: { freeze?: boolean; billingAddress?: string; pin?: number; cvv?: number } = {};
+      const patch: {
+        freeze?: boolean;
+        billingAddress?: string;
+        pin?: number;
+        cvv?: number;
+      } = {};
       const existingWithNewFields = existing as unknown as {
         freeze?: boolean;
         billingAddress?: string;
@@ -238,8 +243,12 @@ export const topUpCardFromLocal = mutation({
       throw new Error("Insufficient local account balance");
     }
 
-    await ctx.db.patch(localAccount._id, { balance: localAccount.balance - args.amount });
-    await ctx.db.patch(card._id, { balance: card.balance + args.amount } as any);
+    await ctx.db.patch(localAccount._id, {
+      balance: localAccount.balance - args.amount,
+    });
+    await ctx.db.patch(card._id, {
+      balance: card.balance + args.amount,
+    } as any);
 
     const now = new Date().toISOString();
     await ctx.db.insert("transactions", {
@@ -251,7 +260,7 @@ export const topUpCardFromLocal = mutation({
       category: "Card",
       status: "completed",
       merchant: "Internal",
-      location: "Arxforth Bank",
+      location: "Purefi Bank",
     });
 
     return null;
@@ -307,7 +316,10 @@ export const createCreditCard = mutation({
     const userId = identity.subject;
 
     // Validate inputs
-    if (!args.number.match(/^\d{4} \d{4} \d{4} \d{4}$/) && !args.number.match(/^\*\*\*\*\d{4}$/)) {
+    if (
+      !args.number.match(/^\d{4} \d{4} \d{4} \d{4}$/) &&
+      !args.number.match(/^\*\*\*\*\d{4}$/)
+    ) {
       // Allow masked or full format for demo, but typically we'd validate stricter
     }
 
@@ -330,8 +342,6 @@ export const createCreditCard = mutation({
     return id;
   },
 });
-
-
 
 export const deleteCreditCard = mutation({
   args: { id: v.id("credit_cards") },

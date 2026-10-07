@@ -3,12 +3,11 @@ import {
   Container,
   Head,
   Heading,
+  Hr,
   Html,
   Preview,
   Section,
   Text,
-  Hr,
-  Img,
 } from "@react-email/components";
 
 interface VerifyEmailProps {
@@ -21,7 +20,7 @@ export const VerifyEmail = ({ email, name, url }: VerifyEmailProps) => {
   return (
     <Html>
       <Head />
-      <Preview>Verify your email address for Arxforth</Preview>
+      <Preview>Verify your email address for Purefi</Preview>
 
       <Body
         style={{
@@ -54,7 +53,7 @@ export const VerifyEmail = ({ email, name, url }: VerifyEmailProps) => {
                       letterSpacing: "0.5px",
                     }}
                   >
-                    Arxforth
+                    Purefi
                   </span>
                 </td>
               </tr>
@@ -75,7 +74,7 @@ export const VerifyEmail = ({ email, name, url }: VerifyEmailProps) => {
           <Text style={{ color: "#A1A1AA", fontSize: 14 }}>Hello {name},</Text>
 
           <Text style={{ color: "#A1A1AA", fontSize: 14 }}>
-            Thanks for starting the Arxforth account creation process. Please
+            Thanks for starting the Purefi account creation process. Please
             verify your email to continue.
           </Text>
 
@@ -106,7 +105,7 @@ export const VerifyEmail = ({ email, name, url }: VerifyEmailProps) => {
           </Text>
 
           <Text style={{ color: "#A1A1AA", fontSize: 12 }}>
-            © {new Date().getFullYear()} Arxforth. All rights reserved.
+            © {new Date().getFullYear()} Purefi. All rights reserved.
           </Text>
         </Container>
       </Body>

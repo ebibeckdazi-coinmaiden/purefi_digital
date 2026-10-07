@@ -1,17 +1,17 @@
 "use client";
 
-import Link from "next/link";
-import { useMemo } from "react";
-import { useQuery } from "convex/react";
-import { api } from "@/convex/_generated/api";
+import { TransactionRow } from "@/app/components/banking";
 import Card from "@/app/components/base/Card";
 import {
-  SectionHeader,
   EmptyState,
   LoadingCard,
+  SectionHeader,
 } from "@/app/components/feature/dashboard/primitives";
-import { TransactionRow } from "@/app/components/banking";
 import RiIcon from "@/app/components/ui/RiIcon";
+import { api } from "@/convex/_generated/api";
+import { useQuery } from "convex/react";
+import Link from "next/link";
+import { useMemo } from "react";
 
 function getLocalAccountId(accounts: any[] | undefined) {
   const local =
@@ -42,7 +42,7 @@ export default function TransactionsList() {
           </div>
         ),
         title: tx.description ?? "Transaction",
-        subtitle: tx.merchant ?? tx.category ?? "Arxforth Bank",
+        subtitle: tx.merchant ?? tx.category ?? "Purefi Bank",
         amount: amount.toLocaleString("en-GB", {
           minimumFractionDigits: 2,
           maximumFractionDigits: 2,

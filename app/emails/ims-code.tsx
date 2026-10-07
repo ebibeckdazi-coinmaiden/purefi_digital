@@ -3,12 +3,11 @@ import {
   Container,
   Head,
   Heading,
+  Hr,
   Html,
   Preview,
   Section,
   Text,
-  Hr,
-  Img
 } from "@react-email/components";
 
 interface ImsCodeEmailProps {
@@ -21,7 +20,7 @@ export const ImsCodeEmail = ({ email, name, code }: ImsCodeEmailProps) => {
   return (
     <Html>
       <Head />
-      <Preview>Your IMS Code for Arxforth</Preview>
+      <Preview>Your IMS Code for Purefi</Preview>
 
       <Body
         style={{
@@ -54,7 +53,7 @@ export const ImsCodeEmail = ({ email, name, code }: ImsCodeEmailProps) => {
                       letterSpacing: "0.5px",
                     }}
                   >
-                    Arxforth
+                    Purefi
                   </span>
                 </td>
               </tr>
@@ -72,12 +71,11 @@ export const ImsCodeEmail = ({ email, name, code }: ImsCodeEmailProps) => {
             Your IMS Code
           </Heading>
 
-          <Text style={{ color: "#A1A1AA", fontSize: 14 }}>
-            Hello {name},
-          </Text>
+          <Text style={{ color: "#A1A1AA", fontSize: 14 }}>Hello {name},</Text>
 
           <Text style={{ color: "#A1A1AA", fontSize: 14 }}>
-            You have requested an IMS code. Please use the following code to proceed:
+            You have requested an IMS code. Please use the following code to
+            proceed:
           </Text>
 
           {/* Code Display */}
@@ -98,9 +96,10 @@ export const ImsCodeEmail = ({ email, name, code }: ImsCodeEmailProps) => {
               {code}
             </div>
           </Section>
-          
+
           <Text style={{ color: "#A1A1AA", fontSize: 14 }}>
-            If you did not request this code, please ignore this email or contact support if you have concerns.
+            If you did not request this code, please ignore this email or
+            contact support if you have concerns.
           </Text>
 
           <Hr style={{ borderColor: "rgba(255,255,255,0.1)" }} />
@@ -111,7 +110,7 @@ export const ImsCodeEmail = ({ email, name, code }: ImsCodeEmailProps) => {
           </Text>
 
           <Text style={{ color: "#A1A1AA", fontSize: 12 }}>
-            © {new Date().getFullYear()} Arxforth. All rights reserved.
+            © {new Date().getFullYear()} Purefi. All rights reserved.
           </Text>
         </Container>
       </Body>

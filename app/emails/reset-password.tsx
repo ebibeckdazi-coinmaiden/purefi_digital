@@ -3,12 +3,11 @@ import {
   Container,
   Head,
   Heading,
+  Hr,
   Html,
   Preview,
   Section,
   Text,
-  Hr,
-  Img,
 } from "@react-email/components";
 
 interface ResetPasswordProps {
@@ -21,47 +20,48 @@ export const ResetPassword = ({ email, name, url }: ResetPasswordProps) => {
   return (
     <Html>
       <Head />
-      <Preview>Reset your Arxforth password</Preview>
+      <Preview>Reset your Purefi password</Preview>
       <Body style={main}>
         <Container style={container}>
           <Section style={logoSection}>
             <table align="center" role="presentation">
               <tr>
                 <td>
-                  <span style={brandName}>Arxforth</span>
+                  <span style={brandName}>Purefi</span>
                 </td>
               </tr>
             </table>
           </Section>
-          
+
           <Heading style={heading}>Reset your password</Heading>
-          
+
           <Text style={text}>Hello {name},</Text>
-          
+
           <Text style={text}>
-            Someone recently requested a password change for your Arxforth account.
-            If this was you, you can set a new password here:
+            Someone recently requested a password change for your Purefi
+            account. If this was you, you can set a new password here:
           </Text>
-          
+
           <Section style={buttonContainer}>
             <a style={button} href={url}>
               Reset password
             </a>
           </Section>
-          
+
           <Text style={text}>
-            If you don't want to change your password or didn't request this, just
-            ignore and delete this message.
+            If you don't want to change your password or didn't request this,
+            just ignore and delete this message.
           </Text>
-          
+
           <Text style={text}>
-            To keep your account secure, please don't forward this email to anyone.
+            To keep your account secure, please don't forward this email to
+            anyone.
           </Text>
-          
+
           <Hr style={hr} />
-          
+
           <Text style={footer}>
-            © {new Date().getFullYear()} Arxforth. All rights reserved.
+            © {new Date().getFullYear()} Purefi. All rights reserved.
           </Text>
         </Container>
       </Body>

@@ -1,24 +1,25 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { motion } from "framer-motion";
-import { useQuery } from "convex/react";
-import { api } from "@/convex/_generated/api";
+import { TransactionRow } from "@/app/components/banking";
 import Card from "@/app/components/base/Card";
 import {
-  SectionHeader,
   EmptyState,
   LoadingCard,
+  SectionHeader,
 } from "@/app/components/feature/dashboard/primitives";
-import { TransactionRow } from "@/app/components/banking";
-import { cn } from "@/lib/utils";
 import RiIcon from "@/app/components/ui/RiIcon";
+import { api } from "@/convex/_generated/api";
+import { cn } from "@/lib/utils";
+import { useQuery } from "convex/react";
+import { motion } from "framer-motion";
+import { useMemo, useState } from "react";
 
 type Filter = "all" | "received" | "sent";
 
 function localAccountId(accounts: any[] | undefined) {
   const local =
-    accounts?.find((a: any) => a.type === "local" || a.kind === "local") ?? null;
+    accounts?.find((a: any) => a.type === "local" || a.kind === "local") ??
+    null;
   return local && "_id" in local ? local._id : null;
 }
 
@@ -63,7 +64,7 @@ export default function RecentTransactions() {
           </div>
         ),
         title: tx.description ?? "Transaction",
-        subtitle: tx.merchant ?? tx.category ?? "Arxforth Bank",
+        subtitle: tx.merchant ?? tx.category ?? "Purefi Bank",
         amount: amount.toLocaleString("en-GB", {
           minimumFractionDigits: 2,
           maximumFractionDigits: 2,

@@ -3,12 +3,11 @@ import {
   Container,
   Head,
   Heading,
+  Hr,
   Html,
   Preview,
   Section,
   Text,
-  Hr,
-  Img,
 } from "@react-email/components";
 
 interface OtpCodeEmailProps {
@@ -21,7 +20,7 @@ export const OtpCodeEmail = ({ email, name, code }: OtpCodeEmailProps) => {
   return (
     <Html>
       <Head />
-      <Preview>Your OTP Code for Arxforth</Preview>
+      <Preview>Your OTP Code for Purefi</Preview>
 
       <Body
         style={{
@@ -54,7 +53,7 @@ export const OtpCodeEmail = ({ email, name, code }: OtpCodeEmailProps) => {
                       letterSpacing: "0.5px",
                     }}
                   >
-                    Arxforth
+                    Purefi
                   </span>
                 </td>
               </tr>
@@ -72,9 +71,7 @@ export const OtpCodeEmail = ({ email, name, code }: OtpCodeEmailProps) => {
             Your One-Time Password
           </Heading>
 
-          <Text style={{ color: "#A1A1AA", fontSize: 14 }}>
-            Hello {name},
-          </Text>
+          <Text style={{ color: "#A1A1AA", fontSize: 14 }}>Hello {name},</Text>
 
           <Text style={{ color: "#A1A1AA", fontSize: 14 }}>
             Please use the following OTP code to verify your action:
@@ -98,9 +95,10 @@ export const OtpCodeEmail = ({ email, name, code }: OtpCodeEmailProps) => {
               {code}
             </div>
           </Section>
-          
+
           <Text style={{ color: "#A1A1AA", fontSize: 14 }}>
-            This code is valid for 10 minutes. Do not share this code with anyone.
+            This code is valid for 10 minutes. Do not share this code with
+            anyone.
           </Text>
 
           <Hr style={{ borderColor: "rgba(255,255,255,0.1)" }} />
@@ -111,7 +109,7 @@ export const OtpCodeEmail = ({ email, name, code }: OtpCodeEmailProps) => {
           </Text>
 
           <Text style={{ color: "#A1A1AA", fontSize: 12 }}>
-            © {new Date().getFullYear()} Arxforth. All rights reserved.
+            © {new Date().getFullYear()} Purefi. All rights reserved.
           </Text>
         </Container>
       </Body>

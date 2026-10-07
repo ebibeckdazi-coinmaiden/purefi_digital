@@ -1,11 +1,11 @@
 "use client";
 
+import RiIcon from "@/app/components/ui/RiIcon";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { ReactNode } from "react";
-import RiIcon from "@/app/components/ui/RiIcon";
-import Image from "next/image";
-import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface AuthLayoutProps {
   children: ReactNode;
@@ -48,13 +48,13 @@ export default function AuthLayout({
             <Link href="/" className="inline-flex items-center gap-2 group">
               <Image
                 src="/logo.png"
-                alt="Arxforth Bank"
+                alt="Purefi Bank"
                 width={40}
                 height={40}
                 className="w-10 h-10"
               />
               <span className="text-2xl font-bold text-white tracking-wide">
-                Arxforth
+                Purefi
               </span>
             </Link>
           </div>
@@ -71,7 +71,7 @@ export default function AuthLayout({
                 <span className="text-luxury-gold">Creating Wealth.</span>
               </h2>
               <p className="text-gray-400 text-base max-w-md">
-                Join millions of users who trust Arxforth for their daily
+                Join millions of users who trust Purefi for their daily
                 financial needs and investment journey.
               </p>
             </motion.div>

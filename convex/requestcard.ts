@@ -1,8 +1,7 @@
-
 import { v } from "convex/values";
-import { mutation } from "./_generated/server";
 import { internal } from "./_generated/api";
 import type { Doc } from "./_generated/dataModel";
+import { mutation } from "./_generated/server";
 
 function issuanceFeeForCurrency(currency: string) {
   switch (currency.trim().toUpperCase()) {
@@ -59,7 +58,6 @@ function issuanceFeeForCurrency(currency: string) {
       return 50;
   }
 }
-
 
 function generateCardNumber16() {
   const prefixes = ["446542", "480011", "414720"] as const;
@@ -128,7 +126,7 @@ export const submitRequestDetails = mutation({
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
     if (!identity) throw new Error("Unauthorized");
-    
+
     const request = await ctx.db.get(args.requestId);
     if (!request) throw new Error("Request not found");
     if (request.userId !== identity.subject) throw new Error("Unauthorized");
@@ -151,8 +149,7 @@ export const approveRequest = mutation({
       .first();
 
     const currency =
-      (typeof user?.currency === "string" && user.currency.trim()) ||
-      "USD";
+      (typeof user?.currency === "string" && user.currency.trim()) || "USD";
 
     const fee = issuanceFeeForCurrency(currency);
 
@@ -167,9 +164,12 @@ export const approveRequest = mutation({
     if (localAccount.type !== "local" && localAccount.kind !== "local") {
       throw new Error("Issuance fee must be paid from a local account");
     }
-    if (localAccount.balance < fee) throw new Error("Insufficient funds for issuance fee");
+    if (localAccount.balance < fee)
+      throw new Error("Insufficient funds for issuance fee");
 
-    await ctx.db.patch(localAccount._id, { balance: localAccount.balance - fee });
+    await ctx.db.patch(localAccount._id, {
+      balance: localAccount.balance - fee,
+    });
 
     await ctx.db.insert("transactions", {
       userId: request.userId,
@@ -179,28 +179,38 @@ export const approveRequest = mutation({
       date: new Date().toISOString(),
       category: "Fees",
       status: "completed",
-      merchant: "Arxforth Bank",
+      merchant: "Purefi Bank",
       location: "Online",
     });
 
-    await ctx.scheduler.runAfter(0, internal.creditCards.internalCreateCreditCard, {
-      userId: request.userId,
-      name: "PureFi",
-      number: generateCardNumber16(),
-      dueDate: dueDateInThreeYearsFromNow(),
-      cvv: generateCvv3(),
-      pin: 1234,
-      billingAddress: typeof user?.address === "string" && user.address.trim() ? user.address.trim() : "Online",
-    });
+    await ctx.scheduler.runAfter(
+      0,
+      internal.creditCards.internalCreateCreditCard,
+      {
+        userId: request.userId,
+        name: "PureFi",
+        number: generateCardNumber16(),
+        dueDate: dueDateInThreeYearsFromNow(),
+        cvv: generateCvv3(),
+        pin: 1234,
+        billingAddress:
+          typeof user?.address === "string" && user.address.trim()
+            ? user.address.trim()
+            : "Online",
+      },
+    );
 
-    await ctx.scheduler.runAfter(0, internal.notifications.internalCreateNotification, {
-      userId: request.userId,
-      title: "Card request approved",
-      message: "Your card request has been approved.",
-      time: new Date().toISOString(),
-      type: "success",
-      icon: "ri-bank-card-line",
-    });
+    await ctx.scheduler.runAfter(
+      0,
+      internal.notifications.internalCreateNotification,
+      {
+        userId: request.userId,
+        title: "Card request approved",
+        message: "Your card request has been approved.",
+        time: new Date().toISOString(),
+        type: "success",
+        icon: "ri-bank-card-line",
+      },
+    );
   },
 });
-

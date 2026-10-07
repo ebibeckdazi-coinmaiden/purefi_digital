@@ -1,17 +1,16 @@
-
 import ImsNextStepEmail from "@/app/emails/ims-next-step";
 import { getResend } from "@/lib/resend";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   try {
-    const { email, name} = await request.json();
+    const { email, name } = await request.json();
 
     const { data, error } = await getResend().emails.send({
-      from: "Arxforth <onboarding@purefidigital.com>",
+      from: "Purefi <onboarding@purefidigital.com>",
       to: [email],
       subject: "Next Step Information",
-      react: ImsNextStepEmail({email,name}),
+      react: ImsNextStepEmail({ email, name }),
     });
 
     if (error) {
