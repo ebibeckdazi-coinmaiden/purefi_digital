@@ -145,7 +145,7 @@ export default function SignInPage() {
           <div className="w-full border-t border-border"></div>
         </div>
         <div className="relative flex justify-center text-xs">
-          <span className="px-3 text-muted-foreground">
+          <span className="px-3 bg-white text-muted-foreground">
             Or continue with email
           </span>
         </div>

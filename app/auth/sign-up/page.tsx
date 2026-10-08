@@ -155,7 +155,7 @@ export default function SignUpPage() {
           <div className="w-full border-t border-border"></div>
         </div>
         <div className="relative flex justify-center text-xs">
-          <span className="px-3 text-muted-foreground">Or register with</span>
+          <span className="px-3 bg-white text-muted-foreground">Or register with</span>
         </div>
       </div>
       <form
@@ -247,7 +247,7 @@ export default function SignUpPage() {
                   checked={field.state.value}
                   disabled={isSubmitting || isGoogleLoading}
                   onChange={(e) => field.handleChange(e.target.checked)}
-                  className="peer h-4 w-4 bg-input cursor-pointer appearance-none rounded border border-primary/40 checked:bg-primary transition-all"
+                  className="peer h-4 w-4 bg-gray-300 cursor-pointer appearance-none rounded border border-primary/40 checked:bg-primary transition-all"
                   required
                 />
                 <RiIcon className="ri-check-line absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-black opacity-0 peer-checked:opacity-100 pointer-events-none text-xs font-bold" />

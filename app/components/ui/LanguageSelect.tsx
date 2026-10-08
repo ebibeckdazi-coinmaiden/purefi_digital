@@ -76,7 +76,7 @@ export default function LanguageSelect({
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}
               transition={{ duration: 0.2 }}
-              className="absolute top-full left-0 w-full mt-2 bg-surface border border-border rounded-xl shadow-xl overflow-hidden max-h-[300px] flex flex-col z-60 text-foreground"
+              className="absolute top-full left-0 w-full mt-2 bg-charcoal border border-border rounded-xl shadow-xl overflow-hidden max-h-[300px] flex flex-col z-60 text-foreground"
             >
               {/* Language List */}
               <ScrollArea className="w-full h-40">
@@ -85,7 +85,7 @@ export default function LanguageSelect({
                     key={language.name}
                     type="button"
                     onClick={() => handleSelect(language)}
-                    className={`w-full flex bg-transparent items-center gap-3 px-4 py-3 hover:bg-muted transition-colors text-left text-foreground`}
+                    className={`w-full flex bg-input items-center gap-3 px-4 py-3 hover:bg-white/5 transition-colors text-left text-foreground`}
                   >
                     <span className="flex-1 text-sm font-medium">{language.name}</span>
                     <span className="text-muted-foreground text-sm">{language.nativeName}</span>

@@ -196,10 +196,10 @@ export default function CurrencySelect({
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 10, scale: 0.95 }}
               transition={{ duration: 0.2 }}
-              className="absolute top-full right-0 mt-2 w-[min(280px,calc(100vw-2rem))] bg-surface border border-border rounded-xl shadow-2xl overflow-hidden max-h-[400px] flex flex-col z-50 origin-top-right text-foreground"
+              className="absolute top-full right-0 mt-2 w-[min(280px,calc(100vw-2rem))] bg-input border border-border rounded-xl shadow-2xl overflow-hidden max-h-[400px] flex flex-col z-50 origin-top-right text-foreground"
             >
               {/* Search Box */}
-              <div className="p-3 border-b border-border sticky top-0 bg-surface z-10">
+              <div className="p-3 border-b border-border sticky top-0 bg-charcoal z-10">
                 <div className="relative">
                   <RiIcon className="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                   <input
@@ -208,7 +208,7 @@ export default function CurrencySelect({
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Search currencies..."
-                    className="w-full bg-background border border-border rounded-lg py-2 pl-9 pr-4 text-sm text-foreground placeholder:text-muted-foreground/70 focus:border-primary focus:outline-none transition-colors"
+                    className="w-full bg-white/5 border border-border rounded-lg py-2 pl-9 pr-4 text-sm text-foreground placeholder:text-muted-foreground/70 focus:border-primary focus:outline-none transition-colors"
                   />
                 </div>
               </div>
@@ -231,7 +231,7 @@ export default function CurrencySelect({
                         onClick={() => handleSelect(currency)}
                         className={cn(
                           "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all text-left group text-foreground",
-                          value === currency.code ? "bg-muted" : "hover:bg-muted"
+                          value === currency.code ? "" : "hover:bg-white/5"
                         )}
                       >
                         <div className="w-6 h-6 rounded-full overflow-hidden shrink-0 border border-border relative">

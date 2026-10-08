@@ -97,10 +97,10 @@ export default function CountrySelect({
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}
               transition={{ duration: 0.2 }}
-              className="absolute top-full left-0 w-full mt-2 bg-surface border border-border rounded-xl shadow-xl overflow-hidden max-h-[300px] flex flex-col z-60 text-foreground"
+              className="absolute top-full left-0 w-full mt-2 bg-input border border-border rounded-xl shadow-xl overflow-hidden max-h-[300px] flex flex-col z-60 text-foreground"
             >
               {/* Search Box */}
-              <div className="p-3 border-b border-border sticky top-0 bg-surface z-10">
+              <div className="p-3 border-b border-border sticky top-0 bg-charcoal z-10">
                 <div className="relative">
                   <RiIcon className="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                   <input
@@ -109,7 +109,7 @@ export default function CountrySelect({
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Search countries..."
-                    className="w-full bg-background border border-border rounded-lg py-2 pl-9 pr-4 text-sm text-foreground placeholder:text-muted-foreground/70 focus:border-primary focus:outline-none"
+                    className="w-full bg-white/5 border border-border rounded-lg py-2 pl-9 pr-4 text-sm text-foreground placeholder:text-muted-foreground/70 focus:border-primary focus:outline-none"
                   />
                 </div>
               </div>
@@ -122,7 +122,7 @@ export default function CountrySelect({
                       key={country.code}
                       type="button"
                       onClick={() => handleSelect(country)}
-                      className={`w-full flex items-center gap-3 px-4 py-3 hover:bg-muted transition-colors text-left text-foreground`}
+                      className={`w-full flex items-center gap-3 px-4 py-3 hover:bg-white/5 transition-colors text-left text-foreground`}
                     >
                       <CircleFlag countryCode={country.code.toLocaleLowerCase()} className='w-8 h-8' />
                       <span className="flex-1 text-sm font-medium truncate">{country.name}</span>
