@@ -121,19 +121,22 @@ export default function SignInPage() {
           onClick={() => signInWithGoogle()}
           type="button"
           disabled={isSubmitting || isGoogleLoading}
-          className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-primary/60 text-secondary text-small font-medium hover:bg-surface hover:border-primary active:scale-[0.98] transition-all disabled:opacity-50"
+          aria-busy={isGoogleLoading}
+          className="w-full relative flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-primary/60 text-secondary text-small font-medium hover:bg-surface hover:border-primary active:scale-[0.98] transition-all disabled:opacity-70 disabled:cursor-not-allowed"
         >
-          {isGoogleLoading ? (
-            <>
-              <RiIcon className="ri-loader-4-line animate-spin" />
-              <span>Redirecting...</span>
-            </>
-          ) : (
-            <>
-              <GoogleIcon className="w-5 h-5" />
-              <span>Google</span>
-            </>
-          )}
+          <span className="inline-flex items-center justify-center gap-2">
+            {isGoogleLoading ? (
+              <>
+                <RiIcon className="ri-loader-4-line animate-spin text-lg shrink-0" />
+                <span>Redirecting...</span>
+              </>
+            ) : (
+              <>
+                <GoogleIcon className="w-5 h-5 shrink-0 block" />
+                <span>Google</span>
+              </>
+            )}
+          </span>
         </button>
       </div>
 

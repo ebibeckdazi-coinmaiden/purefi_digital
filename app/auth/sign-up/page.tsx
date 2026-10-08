@@ -132,19 +132,22 @@ export default function SignUpPage() {
           onClick={() => signInWithGoogle()}
           type="button"
           disabled={isSubmitting || isGoogleLoading}
-          className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-primary/60 text-secondary text-small font-medium hover:bg-surface hover:border-primary active:scale-[0.98] transition-all disabled:opacity-50"
+          aria-busy={isGoogleLoading}
+          className="w-full relative flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-primary/60 text-secondary text-small font-medium hover:bg-surface hover:border-primary active:scale-[0.98] transition-all disabled:opacity-70 disabled:cursor-not-allowed"
         >
-          {isGoogleLoading ? (
-            <>
-              <RiIcon className="ri-loader-4-line animate-spin" />
-              <span>Redirecting...</span>
-            </>
-          ) : (
-            <>
-              <GoogleIcon className="w-5 h-5" />
-              <span>Google</span>
-            </>
-          )}
+          <span className="inline-flex items-center justify-center gap-2">
+            {isGoogleLoading ? (
+              <>
+                <RiIcon className="ri-loader-4-line animate-spin text-lg shrink-0" />
+                <span>Redirecting...</span>
+              </>
+            ) : (
+              <>
+                <GoogleIcon className="w-5 h-5 shrink-0 block" />
+                <span>Google</span>
+              </>
+            )}
+          </span>
         </button>
       </div>
 
@@ -279,9 +282,22 @@ export default function SignUpPage() {
             <button
               type="submit"
               disabled={!check || isSubmitting || isGoogleLoading}
-              className="w-full bg-primary text-primary-foreground font-bold py-3.5 px-4 rounded-xl hover:opacity-90 active:scale-[0.98] transition-all disabled:opacity-50 mt-4 shadow-[0_0_20px_rgba(159,232,112,0.3)]"
+              aria-busy={isSubmitting}
+              className="w-full bg-primary text-primary-foreground font-bold py-3.5 px-4 rounded-xl hover:opacity-90 active:scale-[0.98] transition-all disabled:opacity-50 disabled:cursor-not-allowed mt-4 shadow-[0_0_20px_rgba(159,232,112,0.3)]"
             >
-              Create Account
+              {isSubmitting ? (
+                <span className="inline-flex items-center justify-center gap-2">
+                  <RiIcon className="ri-loader-4-line animate-spin text-lg shrink-0" />
+                  Creating account...
+                </span>
+              ) : isGoogleLoading ? (
+                <span className="inline-flex items-center justify-center gap-2 opacity-70">
+                  <RiIcon className="ri-loader-4-line animate-spin text-lg shrink-0" />
+                  Please wait...
+                </span>
+              ) : (
+                "Create Account"
+              )}
             </button>
           )}
         </form.Subscribe>
