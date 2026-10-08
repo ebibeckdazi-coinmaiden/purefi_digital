@@ -145,7 +145,7 @@ export default function SignInPage() {
           <div className="w-full border-t border-border"></div>
         </div>
         <div className="relative flex justify-center text-xs">
-          <span className="px-3 bg-background text-muted-foreground">
+          <span className="px-3 text-muted-foreground">
             Or continue with email
           </span>
         </div>
@@ -239,15 +239,16 @@ export default function SignInPage() {
         </form.Subscribe>
 
         {error && (
-          <p className="mt-1 text-xs text-red-500 text-center">
-            {error}
-          </p>
+          <p className="mt-1 text-xs text-red-500 text-center">{error}</p>
         )}
       </form>
 
       <p className="text-center text-small text-muted-foreground">
         Don&apos;t have an account?{" "}
-        <Link href="/auth/sign-up" className="text-foreground font-semibold hover:underline">
+        <Link
+          href="/auth/sign-up"
+          className="text-foreground font-semibold hover:underline"
+        >
           Sign up
         </Link>
       </p>

@@ -16,17 +16,17 @@ export const PasswordSchema = type("string >= 8")
   .describe("Password must be at least 8 characters long")
   .and(
     type(/[A-Z]/).describe(
-      "Password must contain at least one uppercase letter"
-    )
+      "Password must contain at least one uppercase letter",
+    ),
   )
   .and(
     type(/[a-z]/).describe(
-      "Password must contain at least one lowercase letter"
-    )
+      "Password must contain at least one lowercase letter",
+    ),
   )
   .and(type(/[0-9]/).describe("Password must contain at least one number"))
   .and(
-    type(/[^A-Za-z0-9]/).describe("Password must contain at least one symbol")
+    type(/[^A-Za-z0-9]/).describe("Password must contain at least one symbol"),
   );
 
 const UserSignUpSchema = type({
@@ -76,7 +76,7 @@ export default function SignUpPage() {
               setError(ctx.error.message);
               setIsSubmitting(false);
             },
-          }
+          },
         );
       } catch {
         setIsSubmitting(false);
@@ -88,14 +88,13 @@ export default function SignUpPage() {
         const Errors =
           result instanceof type.errors
             ? result.summary
-              .split("\n")
-              .map((s) => s.replace(/^◦\s*/, "").trim())
+                .split("\n")
+                .map((s) => s.replace(/^◦\s*/, "").trim())
             : [];
         return result instanceof type.errors ? Errors : undefined;
       },
     },
   });
-
 
   const existingEmail = useQuery(api.user.checkExistingEmail, {
     email: email,
@@ -107,7 +106,7 @@ export default function SignUpPage() {
     try {
       await authClient.signIn.social({
         provider: "google",
-        callbackURL: '/onboarding'
+        callbackURL: "/onboarding",
       });
     } catch (err: unknown) {
       setError(
@@ -156,9 +155,7 @@ export default function SignUpPage() {
           <div className="w-full border-t border-border"></div>
         </div>
         <div className="relative flex justify-center text-xs">
-          <span className="px-3 bg-background text-muted-foreground">
-            Or register with
-          </span>
+          <span className="px-3 text-muted-foreground">Or register with</span>
         </div>
       </div>
       <form
@@ -178,7 +175,8 @@ export default function SignUpPage() {
                 setEmail(value);
                 form.setFieldValue("email", value);
               },
-            }} >
+            }}
+          >
             {(field) => (
               <div className="space-y-1">
                 <input
@@ -194,7 +192,7 @@ export default function SignUpPage() {
                   {(field.state.value.length === 0 &&
                     "Please enter an email address") ||
                     (!field.state.value.match(
-                      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+                      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
                     ) &&
                       "Please enter a valid email address") ||
                     (existingEmail === true && "Email address already exists")}
@@ -203,9 +201,7 @@ export default function SignUpPage() {
             )}
           </form.Field>
         </div>
-        <form.Field
-          name="password"
-        >
+        <form.Field name="password">
           {(field) => (
             <div className="space-y-1 relative">
               <input
@@ -236,16 +232,13 @@ export default function SignUpPage() {
                     "Password must contain at least one uppercase letter") ||
                   (field.state.value.match(/[0-9]/) === null &&
                     "Password must contain at least one number") ||
-                  (field.state.value.match(/[!@#$%^&*(),.?":{}|<>]/) ===
-                    null &&
+                  (field.state.value.match(/[!@#$%^&*(),.?":{}|<>]/) === null &&
                     "Password must contain at least one special character")}
               </p>
             </div>
           )}
         </form.Field>
-        <form.Field
-          name="check"
-        >
+        <form.Field name="check">
           {(field) => (
             <div className="flex items-start gap-2 pt-1">
               <div className="relative flex items-center">
@@ -275,9 +268,7 @@ export default function SignUpPage() {
           )}
         </form.Field>
 
-        <form.Subscribe
-          selector={(state) => [state.values.check]}
-        >
+        <form.Subscribe selector={(state) => [state.values.check]}>
           {([check]) => (
             <button
               type="submit"
@@ -311,11 +302,13 @@ export default function SignUpPage() {
 
       <p className="text-center text-small text-muted-foreground">
         Already have an account?{" "}
-        <Link href="/auth/sign-in" className="text-foreground font-semibold hover:underline">
+        <Link
+          href="/auth/sign-in"
+          className="text-foreground font-semibold hover:underline"
+        >
           Log in
         </Link>
       </p>
     </main>
-  )
+  );
 }
-
