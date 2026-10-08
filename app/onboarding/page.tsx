@@ -565,7 +565,7 @@ export default function OnboardingPage() {
 
   return (
     <AuthGuard requireAuth requireVerified>
-      <main className="flex min-h-dvh w-full justify-center bg-background text-foreground">
+      <main className="flex min-h-dvh w-full justify-center bg-white text-foreground">
         <ScrollArea className="w-full">
           <div className="relative w-full max-w-3xl overflow-hidden mx-auto py-8">
             <div className="flex flex-col gap-1 text-center mb-6 relative z-10">
