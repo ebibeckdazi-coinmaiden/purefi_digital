@@ -132,7 +132,7 @@ export default function SignUpPage() {
           onClick={() => signInWithGoogle()}
           type="button"
           disabled={isSubmitting || isGoogleLoading}
-          className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-border text-secondary text-small font-medium hover:bg-surface active:scale-[0.98] transition-all disabled:opacity-50"
+          className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-primary/60 text-secondary text-small font-medium hover:bg-surface hover:border-primary active:scale-[0.98] transition-all disabled:opacity-50"
         >
           {isGoogleLoading ? (
             <>
@@ -184,7 +184,7 @@ export default function SignUpPage() {
                   disabled={isSubmitting || isGoogleLoading}
                   onChange={(e) => field.handleChange(e.target.value)}
                   placeholder="email"
-                  className="w-full pl-4 pr-12 py-2.5 bg-input border border-transparent rounded-xl text-body text-secondary focus:outline-none focus:border-border focus:bg-surface transition-all placeholder:text-secondary/20"
+                  className="w-full pl-4 pr-12 py-2.5 bg-input border border-primary/40 hover:border-primary/70 rounded-xl text-body text-secondary focus:outline-none focus:border-primary focus:bg-surface transition-all placeholder:text-secondary/20"
                   required
                 />
                 <p className="mt-1 text-xs text-red-500">
@@ -211,7 +211,7 @@ export default function SignUpPage() {
                 disabled={isSubmitting || isGoogleLoading}
                 onChange={(e) => field.handleChange(e.target.value)}
                 placeholder="password"
-                className="w-full pl-4 pr-12 py-2.5 bg-input border border-transparent rounded-xl text-body text-secondary focus:outline-none focus:border-border focus:bg-surface transition-all placeholder:text-secondary/20"
+                className="w-full pl-4 pr-12 py-2.5 bg-input border border-primary/40 hover:border-primary/70 rounded-xl text-body text-secondary focus:outline-none focus:border-primary focus:bg-surface transition-all placeholder:text-secondary/20"
                 required
               />
               <span

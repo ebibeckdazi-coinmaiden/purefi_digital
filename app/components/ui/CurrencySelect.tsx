@@ -163,7 +163,7 @@ export default function CurrencySelect({
           type="button"
           onClick={() => !disabled && setIsOpen(!isOpen)}
           disabled={disabled}
-          className={`w-full flex border bg-input justify-between border-white/10 rounded-xl transition-all text-foreground px-4 py-3 placeholder:text-muted-foreground/70 focus:bg-surface focus:border-border focus:outline-none`}
+          className={`w-full flex border border-primary/40 hover:border-primary/70 bg-input justify-between rounded-xl transition-all text-foreground px-4 py-3 placeholder:text-muted-foreground/70 focus:bg-surface focus:border-primary focus:outline-none`}
         >
           <div className="flex items-center gap-2 md:gap-3 overflow-hidden">
             {variant === 'default' && <RiIcon className="ri-money-dollar-circle-line text-gray-500" />}

@@ -161,7 +161,7 @@ export default function PhoneInput({
     <div className={`space-y-2  ${className}`}>
       <label className="text-sm font-medium text-gray-300">Phone number</label>
       <div className="relative z-50" ref={dropdownRef}>
-        <div className={`flex border bg-input border-white/10 rounded-xl transition-all text-foreground placeholder:text-muted-foreground/70 focus:bg-surface focus:border-border focus:outline-none`}>
+        <div className={`flex border border-primary/40 hover:border-primary/70 bg-input rounded-xl transition-all text-foreground placeholder:text-muted-foreground/70 focus-within:bg-surface focus-within:border-primary focus:outline-none`}>
           {/* Country Selector Trigger */}
           <button
             type="button"
