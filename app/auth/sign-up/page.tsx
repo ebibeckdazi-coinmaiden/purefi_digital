@@ -106,7 +106,7 @@ export default function SignUpPage() {
     try {
       await authClient.signIn.social({
         provider: "google",
-        callbackURL: "/onboarding",
+        callbackURL: "/auth/callback",
       });
     } catch (err: unknown) {
       setError(

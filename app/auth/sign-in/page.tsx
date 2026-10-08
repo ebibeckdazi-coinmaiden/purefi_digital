@@ -10,6 +10,7 @@ import { useForm } from "@tanstack/react-form";
 import { type } from "arktype";
 import { useMutation, useConvex } from "convex/react";
 import { authClient } from "@/lib/auth-client";
+import { isOnboardedProfile } from "@/lib/onboarding";
 import { api } from "@/convex/_generated/api";
 
 const UserSignInSchema = type({
@@ -46,14 +47,32 @@ export default function SignInPage() {
           {
             onSuccess: async () => {
               await ensureLinkedUser();
-              let destination = "/home";
               try {
-                const admin = await convexClient.query(api.admin.isAdmin, {});
-                if (admin) destination = "/admin";
+                const [admin, profile, freshIdentity] = await Promise.all([
+                  convexClient.query(api.admin.isAdmin, {}),
+                  convexClient.query(api.user.user, {}),
+                  convexClient.query(api.auth.getCurrentUser, {}),
+                ]);
+                if (!admin && freshIdentity?.emailVerified === false) {
+                  router.push("/verify-email");
+                  return;
+                }
+                if (admin) {
+                  router.push("/admin");
+                  return;
+                }
+                // Account already created (onboarding complete) -> home,
+                // otherwise new/incomplete account -> onboarding.
+                router.push(
+                  isOnboardedProfile(
+                    profile as Record<string, unknown> | null,
+                  )
+                    ? "/home"
+                    : "/onboarding",
+                );
               } catch {
-                /* fall back to default destination */
+                router.push("/home");
               }
-              router.push(destination);
             },
             onError: (ctx) => {
               setError(ctx.error.message || "Failed to sign in");
@@ -89,7 +108,7 @@ export default function SignInPage() {
     try {
       await authClient.signIn.social({
         provider: "google",
-        callbackURL: "/home",
+        callbackURL: "/auth/callback",
       });
     } catch (err: unknown) {
       setError(

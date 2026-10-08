@@ -1,5 +1,6 @@
 import { api } from "@/convex/_generated/api";
 import { fetchAuthQuery } from "@/lib/auth-server";
+import { isOnboardedProfile } from "@/lib/onboarding";
 import { redirect } from "next/navigation";
 import { PropsWithChildren } from "react";
 import { CustomerShell } from "@/app/components/feature/nav/CustomerShell";
@@ -20,26 +21,11 @@ export default async function DashboardLayout({ children }: PropsWithChildren) {
 
   const isAdminIdentity = await fetchAuthQuery(api.admin.isAdmin, {});
   console.log("[DashboardLayout] isAdmin:", isAdminIdentity);
-  const required = [
-    "firstName",
-    "lastName",
-    "country",
-    "city",
-    "address",
-    "zipCode",
-    "occupation",
-    "currency",
-    "language",
-  ] as const;
 
-  const isOnboarded =
-    !!user &&
-    required.every((k) => {
-      const value = user[k];
-      return typeof value === "string" && value.trim().length > 0;
-    });
-
-  if (!isAdminIdentity && !isOnboarded) {
+  if (
+    !isAdminIdentity &&
+    !isOnboardedProfile(user as Record<string, unknown> | null)
+  ) {
     redirect("/onboarding");
   }
 

@@ -1,5 +1,6 @@
 import { api } from "@/convex/_generated/api";
 import { fetchAuthQuery } from "@/lib/auth-server";
+import { isOnboardedProfile } from "@/lib/onboarding";
 import { redirect } from "next/navigation";
 import { type ReactNode } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -17,26 +18,8 @@ export default async function AuthLayout({
   if (identity && identity.emailVerified === true) {
     const user = await fetchAuthQuery(api.user.user, {});
     console.log("[AuthLayout] user:", user);
-    const required = [
-      "firstName",
-      "lastName",
-      "country",
-      "city",
-      "address",
-      "zipCode",
-      "occupation",
-      "currency",
-      "language",
-    ] as const;
 
-    const isOnboarded =
-      !!user &&
-      required.every((k) => {
-        const value = user[k];
-        return typeof value === "string" && value.trim().length > 0;
-      });
-
-    if (!isOnboarded) {
+    if (!isOnboardedProfile(user as Record<string, unknown> | null)) {
       redirect("/onboarding");
     }
 

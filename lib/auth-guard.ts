@@ -1,28 +1,7 @@
 import { fetchAuthQuery } from "@/lib/auth-server";
 import { redirect } from "next/navigation";
 import { api } from "@/convex/_generated/api";
-
-const ONBOARDING_FIELDS = [
-  "firstName",
-  "lastName",
-  "country",
-  "city",
-  "address",
-  "zipCode",
-  "occupation",
-  "currency",
-  "language",
-] as const;
-
-function isOnboarded(user: Record<string, unknown> | null): boolean {
-  return (
-    !!user &&
-    ONBOARDING_FIELDS.every((k) => {
-      const value = user[k];
-      return typeof value === "string" && value.trim().length > 0;
-    })
-  );
-}
+import { isOnboardedProfile } from "@/lib/onboarding";
 
 interface AuthUser {
   subject: string;
@@ -59,7 +38,7 @@ export function requireVerifiedEmail(identity: AuthUser): void {
  */
 export async function requireOnboarded(): Promise<void> {
   const user = await fetchAuthQuery(api.user.user, {});
-  if (!isOnboarded(user as Record<string, unknown> | null)) {
+  if (!isOnboardedProfile(user as Record<string, unknown> | null)) {
     redirect("/onboarding");
   }
 }

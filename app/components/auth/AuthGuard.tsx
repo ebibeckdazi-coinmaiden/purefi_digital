@@ -4,28 +4,7 @@ import { useQuery } from "convex/react";
 import { useRouter } from "next/navigation";
 import { api } from "@/convex/_generated/api";
 import { useEffect, type ReactNode } from "react";
-
-const ONBOARDING_FIELDS = [
-  "firstName",
-  "lastName",
-  "country",
-  "city",
-  "address",
-  "zipCode",
-  "occupation",
-  "currency",
-  "language",
-] as const;
-
-function isOnboarded(user: Record<string, unknown> | null): boolean {
-  return (
-    !!user &&
-    ONBOARDING_FIELDS.every((k) => {
-      const value = user[k];
-      return typeof value === "string" && value.trim().length > 0;
-    })
-  );
-}
+import { isOnboardedProfile } from "@/lib/onboarding";
 
 interface AuthGuardProps {
   children: ReactNode;
@@ -70,7 +49,7 @@ export function AuthGuard({
 
     if (needOnboarded && identity) {
       const profile = user as Record<string, unknown> | null;
-      if (!isOnboarded(profile)) {
+      if (!isOnboardedProfile(profile)) {
         router.replace("/onboarding");
         return;
       }
