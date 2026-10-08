@@ -153,7 +153,7 @@ export default function CurrencySelect({
   return (
     <div className={cn("relative", className)}>
       {showLabel && (
-        <label className="block text-sm font-medium text-gray-400 mb-2">
+        <label className="block text-sm font-medium text-foreground/85 mb-2">
           {label}
         </label>
       )}
@@ -166,24 +166,24 @@ export default function CurrencySelect({
           className={`w-full flex border border-primary/40 hover:border-primary/70 bg-input justify-between rounded-xl transition-all text-foreground px-4 py-3 placeholder:text-muted-foreground/70 focus:bg-surface focus:border-primary focus:outline-none`}
         >
           <div className="flex items-center gap-2 md:gap-3 overflow-hidden">
-            {variant === 'default' && <RiIcon className="ri-money-dollar-circle-line text-gray-500" />}
+            {variant === 'default' && <RiIcon className="ri-money-dollar-circle-line text-muted-foreground" />}
 
             {selectedCurrency ? (
-              <span className="flex items-center gap-2 md:gap-3">
-                <div className="relative w-6 h-6 rounded-full overflow-hidden shrink-0 border border-white/10">
+              <span className="flex items-center gap-2 md:gap-3 text-foreground">
+                <div className="relative w-6 h-6 rounded-full overflow-hidden shrink-0 border border-border">
                   <CircleFlag countryCode={selectedCurrency.countryCode?.toLocaleLowerCase()} className='w-full h-full object-cover' />
                 </div>
                 <span className="font-bold tracking-wide">{selectedCurrency.code}</span>
                 {variant === 'default' && (
-                  <span className="text-gray-500 text-sm truncate hidden sm:inline-block">- {selectedCurrency.name}</span>
+                  <span className="text-muted-foreground text-sm truncate hidden sm:inline-block">- {selectedCurrency.name}</span>
                 )}
               </span>
             ) : (
-              <span className="text-gray-600">{placeholder}</span>
+              <span className="text-muted-foreground/70">{placeholder}</span>
             )}
           </div>
           <RiIcon className={cn(
-            "ri-arrow-down-s-line text-gray-500 transition-transform duration-200",
+            "ri-arrow-down-s-line text-muted-foreground transition-transform duration-200",
             isOpen && "rotate-180"
           )} />
         </button>
@@ -196,19 +196,19 @@ export default function CurrencySelect({
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 10, scale: 0.95 }}
               transition={{ duration: 0.2 }}
-              className="absolute top-full right-0 mt-2 w-[min(280px,calc(100vw-2rem))] bg-input border border-white/10 rounded-xl shadow-2xl overflow-hidden max-h-[400px] flex flex-col z-50 origin-top-right"
+              className="absolute top-full right-0 mt-2 w-[min(280px,calc(100vw-2rem))] bg-surface border border-border rounded-xl shadow-2xl overflow-hidden max-h-[400px] flex flex-col z-50 origin-top-right text-foreground"
             >
               {/* Search Box */}
-              <div className="p-3 border-b border-white/5 sticky top-0 bg-charcoal z-10">
+              <div className="p-3 border-b border-border sticky top-0 bg-surface z-10">
                 <div className="relative">
-                  <RiIcon className="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
+                  <RiIcon className="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                   <input
                     ref={searchInputRef}
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Search currencies..."
-                    className="w-full bg-white/5 border border-white/10 rounded-lg py-2 pl-9 pr-4 text-sm text-body placeholder-gray-500 focus:border-luxury-gold focus:outline-none focus:bg-white/10 transition-colors"
+                    className="w-full bg-background border border-border rounded-lg py-2 pl-9 pr-4 text-sm text-foreground placeholder:text-muted-foreground/70 focus:border-primary focus:outline-none transition-colors"
                   />
                 </div>
               </div>
@@ -216,8 +216,8 @@ export default function CurrencySelect({
               {/* Currency List */}
               <ScrollArea className="flex-1 w-full">
                 {isLoading && currencyList.length === staticCurrencies.length ? (
-                  <div className="p-4 text-center text-body text-sm">
-                    <div className="w-4 h-4 border-2 border-luxury-gold border-t-transparent rounded-full animate-spin mx-auto mb-2"></div>
+                  <div className="p-4 text-center text-foreground text-sm">
+                    <div className="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-2"></div>
                     Loading currencies...
                   </div>
                 ) : null}
@@ -230,28 +230,28 @@ export default function CurrencySelect({
                         type="button"
                         onClick={() => handleSelect(currency)}
                         className={cn(
-                          "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all text-left group",
-                          value === currency.code ? "text-body" : "hover:bg-gray-600/50 text-gray-600 hover:text-white"
+                          "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all text-left group text-foreground",
+                          value === currency.code ? "bg-muted" : "hover:bg-muted"
                         )}
                       >
-                        <div className="w-6 h-6 rounded-full overflow-hidden shrink-0 border border-white/10 relative">
+                        <div className="w-6 h-6 rounded-full overflow-hidden shrink-0 border border-border relative">
                           <CircleFlag countryCode={currency.countryCode?.toLocaleLowerCase()} className='w-full h-full object-cover' />
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center justify-between">
-                            <span className="text-sm text-body-foreground font-bold">{currency.code}</span>
-                            <span className="text-xs opacity-50">{currency.symbol}</span>
+                            <span className="text-sm text-foreground font-bold">{currency.code}</span>
+                            <span className="text-xs text-muted-foreground">{currency.symbol}</span>
                           </div>
-                          <div className="text-xs truncate opacity-70 group-hover:opacity-100 transition-opacity">{currency.name}</div>
+                          <div className="text-xs truncate text-muted-foreground transition-opacity">{currency.name}</div>
                         </div>
                         {value === currency.code && (
-                          <RiIcon className="ri-check-line text-luxury-gold" />
+                          <RiIcon className="ri-check-line text-foreground" />
                         )}
                       </button>
                     ))}
                   </div>
                 ) : (
-                  <div className="p-8 text-center text-gray-500 text-sm flex flex-col items-center">
+                  <div className="p-8 text-center text-muted-foreground text-sm flex flex-col items-center">
                     <RiIcon className="ri-emotion-unhappy-line text-2xl mb-2 opacity-50" />
                     No currencies found
                   </div>

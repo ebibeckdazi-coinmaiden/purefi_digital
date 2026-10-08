@@ -47,7 +47,7 @@ export default function LanguageSelect({
 
   return (
     <div className={`space-y-2 ${className}`}>
-      <label className="text-sm font-medium text-gray-300">Language</label>
+      <label className="text-sm font-medium text-foreground/85">Language</label>
       <div className="relative z-30" ref={dropdownRef}>
         <button
           type="button"
@@ -55,17 +55,17 @@ export default function LanguageSelect({
           className={`w-full flex border border-primary/40 hover:border-primary/70 bg-input justify-between rounded-xl transition-all text-foreground px-4 py-3 placeholder:text-muted-foreground/70 focus:bg-surface focus:border-primary focus:outline-none`}
         >
           <div className="flex items-center gap-3">
-            <RiIcon className="ri-translate-2 text-gray-500" />
+            <RiIcon className="ri-translate-2 text-muted-foreground" />
             {selectedLanguage ? (
-              <span className="flex items-center gap-2">
+              <span className="flex items-center gap-2 text-foreground">
                 <span>{selectedLanguage.name}</span>
-                <span className="text-gray-500 text-sm">({selectedLanguage.nativeName})</span>
+                <span className="text-muted-foreground text-sm">({selectedLanguage.nativeName})</span>
               </span>
             ) : (
-              <span className="text-gray-600">{placeholder}</span>
+              <span className="text-muted-foreground/70">{placeholder}</span>
             )}
           </div>
-          <RiIcon className={`ri-arrow-down-s-line text-gray-500 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
+          <RiIcon className={`ri-arrow-down-s-line text-muted-foreground transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
         </button>
 
         {/* Dropdown Menu */}
@@ -76,7 +76,7 @@ export default function LanguageSelect({
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}
               transition={{ duration: 0.2 }}
-              className="absolute top-full left-0 w-full mt-2 bg-charcoal border border-white/10 rounded-xl shadow-xl overflow-hidden max-h-[300px] flex flex-col z-60"
+              className="absolute top-full left-0 w-full mt-2 bg-surface border border-border rounded-xl shadow-xl overflow-hidden max-h-[300px] flex flex-col z-60 text-foreground"
             >
               {/* Language List */}
               <ScrollArea className="w-full h-40">
@@ -85,10 +85,10 @@ export default function LanguageSelect({
                     key={language.name}
                     type="button"
                     onClick={() => handleSelect(language)}
-                    className={`w-full flex bg-input items-center gap-3 px-4 py-3 hover:bg-input transition-colors text-left`}
+                    className={`w-full flex bg-transparent items-center gap-3 px-4 py-3 hover:bg-muted transition-colors text-left text-foreground`}
                   >
-                    <span className="flex-1 text-body text-sm font-medium">{language.name}</span>
-                    <span className="text-gray-400 text-sm">{language.nativeName}</span>
+                    <span className="flex-1 text-sm font-medium">{language.name}</span>
+                    <span className="text-muted-foreground text-sm">{language.nativeName}</span>
                   </button>
                 ))}
               </ScrollArea>

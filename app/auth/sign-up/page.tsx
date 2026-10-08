@@ -118,12 +118,12 @@ export default function SignUpPage() {
   };
 
   return (
-    <main className="w-full flex flex-col gap-5">
+    <main className="w-full flex flex-col gap-5 text-foreground">
       <div className="flex flex-col gap-1 text-center">
-        <h1 className="text-h2 font-bold text-secondary tracking-tight">
+        <h1 className="text-h2 font-bold text-foreground tracking-tight">
           Create Account
         </h1>
-        <p className="text-small text-secondary/60">
+        <p className="text-small text-muted-foreground">
           Enter your personal data to create your account.
         </p>
       </div>
@@ -133,7 +133,7 @@ export default function SignUpPage() {
           type="button"
           disabled={isSubmitting || isGoogleLoading}
           aria-busy={isGoogleLoading}
-          className="w-full relative flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-primary/60 text-secondary text-small font-medium hover:bg-surface hover:border-primary active:scale-[0.98] transition-all disabled:opacity-70 disabled:cursor-not-allowed"
+          className="w-full relative flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-primary/60 text-foreground text-small font-medium hover:bg-surface hover:border-primary active:scale-[0.98] transition-all disabled:opacity-70 disabled:cursor-not-allowed"
         >
           <span className="inline-flex items-center justify-center gap-2">
             {isGoogleLoading ? (
@@ -153,10 +153,10 @@ export default function SignUpPage() {
 
       <div className="relative py-3">
         <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t border-gray-300"></div>
+          <div className="w-full border-t border-border"></div>
         </div>
         <div className="relative flex justify-center text-xs">
-          <span className="px-3 bg-white text-gray-500">
+          <span className="px-3 bg-background text-muted-foreground">
             Or register with
           </span>
         </div>
@@ -187,7 +187,7 @@ export default function SignUpPage() {
                   disabled={isSubmitting || isGoogleLoading}
                   onChange={(e) => field.handleChange(e.target.value)}
                   placeholder="email"
-                  className="w-full pl-4 pr-12 py-2.5 bg-input border border-primary/40 hover:border-primary/70 rounded-xl text-body text-secondary focus:outline-none focus:border-primary focus:bg-surface transition-all placeholder:text-secondary/20"
+                  className="w-full pl-4 pr-12 py-2.5 bg-input border border-primary/40 hover:border-primary/70 rounded-xl text-body text-foreground focus:outline-none focus:border-primary focus:bg-surface transition-all placeholder:text-muted-foreground/70"
                   required
                 />
                 <p className="mt-1 text-xs text-red-500">
@@ -214,7 +214,7 @@ export default function SignUpPage() {
                 disabled={isSubmitting || isGoogleLoading}
                 onChange={(e) => field.handleChange(e.target.value)}
                 placeholder="password"
-                className="w-full pl-4 pr-12 py-2.5 bg-input border border-primary/40 hover:border-primary/70 rounded-xl text-body text-secondary focus:outline-none focus:border-primary focus:bg-surface transition-all placeholder:text-secondary/20"
+                className="w-full pl-4 pr-12 py-2.5 bg-input border border-primary/40 hover:border-primary/70 rounded-xl text-body text-foreground focus:outline-none focus:border-primary focus:bg-surface transition-all placeholder:text-muted-foreground/70"
                 required
               />
               <span
@@ -222,9 +222,9 @@ export default function SignUpPage() {
                 onClick={() => toggleVisibility()}
               >
                 {isVisible ? (
-                  <Eye className="w-5 h-5 text-gray-400" />
+                  <Eye className="w-5 h-5 text-muted-foreground" />
                 ) : (
-                  <EyeClosed className="w-5 h-5 text-gray-400" />
+                  <EyeClosed className="w-5 h-5 text-muted-foreground" />
                 )}
               </span>
               <p className="mt-1 text-xs text-red-500">
@@ -254,19 +254,19 @@ export default function SignUpPage() {
                   checked={field.state.value}
                   disabled={isSubmitting || isGoogleLoading}
                   onChange={(e) => field.handleChange(e.target.checked)}
-                  className="peer h-4 w-4 bg-gray-300 cursor-pointer appearance-none rounded border border-white/10 checked:bg-primary transition-all"
+                  className="peer h-4 w-4 bg-input cursor-pointer appearance-none rounded border border-primary/40 checked:bg-primary transition-all"
                   required
                 />
                 <RiIcon className="ri-check-line absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-black opacity-0 peer-checked:opacity-100 pointer-events-none text-xs font-bold" />
               </div>
               <label
                 htmlFor="terms"
-                className="text-xs text-gray-400 cursor-pointer select-none"
+                className="text-xs text-muted-foreground cursor-pointer select-none"
               >
                 I agree to the{" "}
                 <a
                   href="#"
-                  className="text-gray-400 hover:underline underline-offset-2"
+                  className="text-muted-foreground hover:text-foreground hover:underline underline-offset-2"
                 >
                   Terms & Conditions
                 </a>
@@ -309,9 +309,9 @@ export default function SignUpPage() {
         </div>
       )}
 
-      <p className="text-center text-small text-secondary/60">
+      <p className="text-center text-small text-muted-foreground">
         Already have an account?{" "}
-        <Link href="/auth/sign-in" className="text-secondary font-semibold hover:underline">
+        <Link href="/auth/sign-in" className="text-foreground font-semibold hover:underline">
           Log in
         </Link>
       </p>

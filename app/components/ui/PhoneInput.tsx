@@ -159,19 +159,19 @@ export default function PhoneInput({
 
   return (
     <div className={`space-y-2  ${className}`}>
-      <label className="text-sm font-medium text-gray-300">Phone number</label>
+      <label className="text-sm font-medium text-foreground/85">Phone number</label>
       <div className="relative z-50" ref={dropdownRef}>
         <div className={`flex border border-primary/40 hover:border-primary/70 bg-input rounded-xl transition-all text-foreground placeholder:text-muted-foreground/70 focus-within:bg-surface focus-within:border-primary focus:outline-none`}>
           {/* Country Selector Trigger */}
           <button
             type="button"
             onClick={() => setIsOpen(!isOpen)}
-            className="flex items-center gap-2 pl-4 pr-3 py-3 border-r border-white/10 hover:bg-white/5 transition-colors rounded-l-xl shrink-0 min-w-[100px]"
+            className="flex items-center gap-2 pl-4 pr-3 py-3 border-r border-primary/40 hover:bg-muted transition-colors rounded-l-xl shrink-0 min-w-[100px]"
           >
             <CircleFlag countryCode={selectedCountry.code.toLocaleLowerCase()} className='w-6 h-6' />
-            <span className="text-body font-medium">{selectedCountry.code}</span>
-            <span className="text-gray-400 text-sm">{selectedCountry.dial_code.split(',')[0]}</span>
-            <RiIcon className={`ri-arrow-down-s-line text-gray-500 transition-transform duration-200 ml-auto ${isOpen ? 'rotate-180' : ''}`} />
+            <span className="text-body font-medium text-foreground">{selectedCountry.code}</span>
+            <span className="text-muted-foreground text-sm">{selectedCountry.dial_code.split(',')[0]}</span>
+            <RiIcon className={`ri-arrow-down-s-line text-muted-foreground transition-transform duration-200 ml-auto ${isOpen ? 'rotate-180' : ''}`} />
           </button>
 
           {/* Phone Number Input */}
@@ -180,7 +180,7 @@ export default function PhoneInput({
             value={displayValue}
             onChange={handleInputChange}
             placeholder={placeholder}
-            className="w-full bg-transparent border-none px-4 py-3 text-body text-foreground transition-all placeholder:text-muted-foreground/70 focus:bg-surface focus:border-border focus:outline-none rounded-r-xl"
+            className="w-full bg-transparent border-none px-4 py-3 text-body text-foreground transition-all placeholder:text-muted-foreground/70 focus:bg-transparent focus:outline-none rounded-r-xl"
           />
         </div>
 
@@ -192,19 +192,19 @@ export default function PhoneInput({
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}
               transition={{ duration: 0.2 }}
-              className="absolute top-full left-0 w-full mt-2 bg-input border border-white/10 rounded-xl shadow-xl overflow-hidden max-h-[300px] flex flex-col z-90"
+              className="absolute top-full left-0 w-full mt-2 bg-surface border border-border rounded-xl shadow-xl overflow-hidden max-h-[300px] flex flex-col z-90 text-foreground"
             >
               {/* Search Box */}
-              <div className="p-3 border-b border-white/5 sticky top-0 bg-charcoal z-10">
+              <div className="p-3 border-b border-border sticky top-0 bg-surface z-10">
                 <div className="relative">
-                  <RiIcon className="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
+                  <RiIcon className="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                   <input
                     ref={searchInputRef}
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Search for countries"
-                    className="w-full bg-white/5 border border-white/10 rounded-lg py-2 pl-9 pr-4 text-sm text-body placeholder-gray-500 focus:border-luxury-gold focus:outline-none"
+                    className="w-full bg-background border border-border rounded-lg py-2 pl-9 pr-4 text-sm text-foreground placeholder:text-muted-foreground/70 focus:border-primary focus:outline-none"
                   />
                 </div>
               </div>
@@ -217,15 +217,15 @@ export default function PhoneInput({
                       key={country.code}
                       type="button"
                       onClick={() => handleCountrySelect(country)}
-                      className={`w-full flex items-center gap-3 px-4 py-3 hover:bg-white/5 transition-colors text-left`}
+                      className={`w-full flex items-center gap-3 px-4 py-3 hover:bg-muted transition-colors text-left text-foreground`}
                     >
                       <CircleFlag countryCode={country.code.toLocaleLowerCase()} className='w-8 h-8' />
-                      <span className="flex-1 text-body text-sm font-medium truncate">{country.name}</span>
-                      <span className="text-gray-400 text-sm font-mono">{country.dial_code.split(',')[0]}</span>
+                      <span className="flex-1 text-sm font-medium truncate">{country.name}</span>
+                      <span className="text-muted-foreground text-sm font-mono">{country.dial_code.split(',')[0]}</span>
                     </button>
                   ))
                 ) : (
-                  <div className="p-4 text-center text-gray-500 text-sm">
+                  <div className="p-4 text-center text-muted-foreground text-sm">
                     No countries found
                   </div>
                 )}

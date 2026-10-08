@@ -301,7 +301,7 @@ export default function OnboardingPage() {
                           value={field.state.value}
                           onChange={(e) => field.handleChange(e.target.value)}
                           onBlur={field.handleBlur}
-                          className="w-full appearance-none rounded-xl border border-primary/40 hover:border-primary/70 bg-input py-2.5 pr-4 pl-11 text-body text-foreground transition-all placeholder:text-muted-foreground/70 focus:bg-surface focus:border-primary focus:outline-none scheme-dark [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
+                          className="w-full appearance-none rounded-xl border border-primary/40 hover:border-primary/70 bg-input py-2.5 pr-4 pl-11 text-body text-foreground transition-all placeholder:text-muted-foreground/70 focus:bg-surface focus:border-primary focus:outline-none scheme-light [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
                         />
                       </div>
                       {showError && error && (
@@ -565,7 +565,7 @@ export default function OnboardingPage() {
 
   return (
     <AuthGuard requireAuth requireVerified>
-      <main className="dark flex min-h-dvh w-full justify-center bg-white">
+      <main className="flex min-h-dvh w-full justify-center bg-background text-foreground">
         <ScrollArea className="w-full">
           <div className="relative w-full max-w-3xl overflow-hidden mx-auto py-8">
             <div className="flex flex-col gap-1 text-center mb-6 relative z-10">

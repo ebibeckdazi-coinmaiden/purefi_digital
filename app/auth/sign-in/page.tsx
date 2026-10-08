@@ -100,12 +100,12 @@ export default function SignInPage() {
   };
 
   return (
-    <main className="w-full flex flex-col gap-5">
+    <main className="w-full flex flex-col gap-5 text-foreground">
       <div className="flex flex-col gap-1 text-center">
-        <h1 className="text-h2 font-bold text-secondary tracking-tight">
+        <h1 className="text-h2 font-bold text-foreground tracking-tight">
           Sign in to your account
         </h1>
-        <p className="text-small text-secondary/60">
+        <p className="text-small text-muted-foreground">
           Enter your credentials to access your account.
         </p>
       </div>
@@ -122,7 +122,7 @@ export default function SignInPage() {
           type="button"
           disabled={isSubmitting || isGoogleLoading}
           aria-busy={isGoogleLoading}
-          className="w-full relative flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-primary/60 text-secondary text-small font-medium hover:bg-surface hover:border-primary active:scale-[0.98] transition-all disabled:opacity-70 disabled:cursor-not-allowed"
+          className="w-full relative flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-primary/60 text-foreground text-small font-medium hover:bg-surface hover:border-primary active:scale-[0.98] transition-all disabled:opacity-70 disabled:cursor-not-allowed"
         >
           <span className="inline-flex items-center justify-center gap-2">
             {isGoogleLoading ? (
@@ -142,10 +142,10 @@ export default function SignInPage() {
 
       <div className="relative py-3">
         <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t border-gray-300"></div>
+          <div className="w-full border-t border-border"></div>
         </div>
         <div className="relative flex justify-center text-xs">
-          <span className="px-3 bg-white text-gray-500">
+          <span className="px-3 bg-background text-muted-foreground">
             Or continue with email
           </span>
         </div>
@@ -169,7 +169,7 @@ export default function SignInPage() {
                   disabled={isSubmitting || isGoogleLoading}
                   onChange={(e) => field.handleChange(e.target.value)}
                   placeholder="email"
-                  className="w-full pl-4 pr-12 py-2.5 bg-input border border-primary/40 hover:border-primary/70 rounded-xl text-body text-secondary focus:outline-none focus:border-primary focus:bg-surface transition-all placeholder:text-secondary/20"
+                  className="w-full pl-4 pr-12 py-2.5 bg-input border border-primary/40 hover:border-primary/70 rounded-xl text-body text-foreground focus:outline-none focus:border-primary focus:bg-surface transition-all placeholder:text-muted-foreground/70"
                   required
                 />
                 <p className="mt-1 text-xs text-red-500">
@@ -194,7 +194,7 @@ export default function SignInPage() {
                 disabled={isSubmitting || isGoogleLoading}
                 onChange={(e) => field.handleChange(e.target.value)}
                 placeholder="password"
-                className="w-full pl-4 pr-12 py-2.5 bg-input border border-primary/40 hover:border-primary/70 rounded-xl text-body text-secondary focus:outline-none focus:border-primary focus:bg-surface transition-all placeholder:text-secondary/20"
+                className="w-full pl-4 pr-12 py-2.5 bg-input border border-primary/40 hover:border-primary/70 rounded-xl text-body text-foreground focus:outline-none focus:border-primary focus:bg-surface transition-all placeholder:text-muted-foreground/70"
                 required
               />
               <span
@@ -202,15 +202,15 @@ export default function SignInPage() {
                 onClick={() => toggleVisibility()}
               >
                 {isVisible ? (
-                  <Eye className="w-5 h-5 text-gray-400" />
+                  <Eye className="w-5 h-5 text-muted-foreground" />
                 ) : (
-                  <EyeClosed className="w-5 h-5 text-gray-400" />
+                  <EyeClosed className="w-5 h-5 text-muted-foreground" />
                 )}
               </span>
               <div className="flex justify-end">
                 <Link
                   href="/reset-password"
-                  className="text-xs text-gray-400 hover:underline underline-offset-2"
+                  className="text-xs text-muted-foreground hover:text-foreground hover:underline underline-offset-2"
                 >
                   Forgot password?
                 </Link>
@@ -245,9 +245,9 @@ export default function SignInPage() {
         )}
       </form>
 
-      <p className="text-center text-small text-secondary/60">
+      <p className="text-center text-small text-muted-foreground">
         Don&apos;t have an account?{" "}
-        <Link href="/auth/sign-up" className="text-secondary font-semibold hover:underline">
+        <Link href="/auth/sign-up" className="text-foreground font-semibold hover:underline">
           Sign up
         </Link>
       </p>

@@ -68,7 +68,7 @@ export default function CountrySelect({
 
   return (
     <div className={`space-y-2 ${className}`}>
-      <label className="text-sm font-medium text-gray-300">Country</label>
+      <label className="text-sm font-medium text-foreground/85">Country</label>
       <div className="relative z-40" ref={dropdownRef}>
         <button
           type="button"
@@ -76,17 +76,17 @@ export default function CountrySelect({
           className={`w-full flex border border-primary/40 hover:border-primary/70 bg-input justify-between rounded-xl transition-all text-foreground px-4 py-3 placeholder:text-muted-foreground/70 focus:bg-surface focus:border-primary focus:outline-none`}
         >
           <div className="flex items-center gap-3">
-            <RiIcon className="ri-global-line text-gray-500" />
+            <RiIcon className="ri-global-line text-muted-foreground" />
             {selectedCountry ? (
-              <span className="flex items-center gap-2">
+              <span className="flex items-center gap-2 text-foreground">
                 <CircleFlag countryCode={selectedCountry.code.toLocaleLowerCase()} className='w-5 h-5' />
                 <span>{selectedCountry.name}</span>
               </span>
             ) : (
-              <span className="text-gray-600">{placeholder}</span>
+              <span className="text-muted-foreground/70">{placeholder}</span>
             )}
           </div>
-          <RiIcon className={`ri-arrow-down-s-line text-gray-500 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
+          <RiIcon className={`ri-arrow-down-s-line text-muted-foreground transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
         </button>
 
         {/* Dropdown Menu */}
@@ -97,19 +97,19 @@ export default function CountrySelect({
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}
               transition={{ duration: 0.2 }}
-              className="absolute top-full left-0 w-full mt-2 bg-input border border-white/10 rounded-xl shadow-xl overflow-hidden max-h-[300px] flex flex-col z-60"
+              className="absolute top-full left-0 w-full mt-2 bg-surface border border-border rounded-xl shadow-xl overflow-hidden max-h-[300px] flex flex-col z-60 text-foreground"
             >
               {/* Search Box */}
-              <div className="p-3 border-b border-white/5 sticky top-0 bg-charcoal z-10">
+              <div className="p-3 border-b border-border sticky top-0 bg-surface z-10">
                 <div className="relative">
-                  <RiIcon className="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
+                  <RiIcon className="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                   <input
                     ref={searchInputRef}
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Search countries..."
-                    className="w-full bg-white/5 border border-white/10 rounded-lg py-2 pl-9 pr-4 text-sm text-body placeholder-gray-500 focus:border-luxury-gold focus:outline-none"
+                    className="w-full bg-background border border-border rounded-lg py-2 pl-9 pr-4 text-sm text-foreground placeholder:text-muted-foreground/70 focus:border-primary focus:outline-none"
                   />
                 </div>
               </div>
@@ -122,14 +122,14 @@ export default function CountrySelect({
                       key={country.code}
                       type="button"
                       onClick={() => handleSelect(country)}
-                      className={`w-full flex items-center gap-3 px-4 py-3 hover:bg-white/5 transition-colors text-left`}
+                      className={`w-full flex items-center gap-3 px-4 py-3 hover:bg-muted transition-colors text-left text-foreground`}
                     >
                       <CircleFlag countryCode={country.code.toLocaleLowerCase()} className='w-8 h-8' />
-                      <span className="flex-1 text-body text-sm font-medium truncate">{country.name}</span>
+                      <span className="flex-1 text-sm font-medium truncate">{country.name}</span>
                     </button>
                   ))
                 ) : (
-                  <div className="p-4 text-center text-gray-500 text-sm">
+                  <div className="p-4 text-center text-muted-foreground text-sm">
                     No countries found
                   </div>
                 )}

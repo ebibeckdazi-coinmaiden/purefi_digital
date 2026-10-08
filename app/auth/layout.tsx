@@ -44,9 +44,9 @@ export default async function AuthLayout({
   }
 
   return (
-    <div className="dark h-dvh w-full bg-white overflow-hidden flex p-4 lg:p-6 gap-6 font-sans">
+    <div className="h-dvh w-full bg-background text-foreground overflow-hidden flex p-4 lg:p-6 gap-6 font-sans">
       {/* Left Side Graphic */}
-      <div className="hidden lg:flex w-1/2 h-full relative rounded-4xl bg-[#080808] overflow-hidden border border-border flex-col justify-between p-12 shadow-2xl text-white">
+      <div className="dark hidden lg:flex w-1/2 h-full relative rounded-4xl bg-[#080808] overflow-hidden border border-border flex-col justify-between p-12 shadow-2xl text-white">
         {/* Branding & Copy */}
         <div className="relative z-20 mt-8">
           <h1 className="text-[2.75rem] font-bold tracking-tight leading-[1.1] mb-4 max-w-md">
