@@ -7,6 +7,7 @@ import { type } from "arktype";
 import { useMutation, useAction, useQuery } from "convex/react";
 import { useRouter } from "next/navigation";
 import { api } from "@/convex/_generated/api";
+import { authClient } from "@/lib/auth-client";
 import { AuthGuard } from "@/app/components/auth/AuthGuard";
 import RiIcon from "../components/ui/RiIcon";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -47,6 +48,7 @@ export default function OnboardingPage() {
   const totalSteps = 3;
   const [showStepErrors, setShowStepErrors] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [signingOut, setSigningOut] = useState(false);
   const router = useRouter();
   const identity = useQuery(api.auth.getCurrentUser);
   const isAdminIdentity = useQuery(api.admin.isAdmin);
@@ -170,6 +172,22 @@ export default function OnboardingPage() {
     if (step > 1) {
       setStep(step - 1);
       setShowStepErrors(false);
+    }
+  };
+
+  // Signed-in users can't just Link back to /auth/sign-in (AuthLayout
+  // bounces verified users to onboarding/home), so sign out first.
+  const handleSwitchAccount = async (
+    destination: "/auth/sign-in" | "/auth/sign-up",
+  ) => {
+    if (signingOut) return;
+    setSigningOut(true);
+    try {
+      await authClient.signOut();
+    } catch {
+      // Still navigate even if sign-out fails; guards will handle it.
+    } finally {
+      router.replace(destination);
     }
   };
 
@@ -568,6 +586,21 @@ export default function OnboardingPage() {
       <main className="flex min-h-dvh w-full justify-center bg-white text-foreground">
         <ScrollArea className="w-full">
           <div className="relative w-full max-w-3xl overflow-hidden mx-auto py-8">
+            <div className="flex items-center justify-start mb-6 relative z-10">
+              <button
+                type="button"
+                onClick={() => handleSwitchAccount("/auth/sign-in")}
+                disabled={signingOut}
+                className="inline-flex items-center gap-2 rounded-xl border border-primary/60 hover:border-primary px-4 py-2 text-small font-medium text-foreground transition-all hover:bg-input active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed"
+              >
+                {signingOut ? (
+                  <RiIcon className="ri-loader-4-line animate-spin" />
+                ) : (
+                  <RiIcon className="ri-arrow-left-line" />
+                )}
+                {signingOut ? "Signing out..." : "Back to sign in"}
+              </button>
+            </div>
             <div className="flex flex-col gap-1 text-center mb-6 relative z-10">
               <h1 className="text-h2 font-bold tracking-tight text-foreground">
                 Complete Profile
@@ -628,6 +661,38 @@ export default function OnboardingPage() {
               <Link href="/privacy" className="text-primary hover:underline">
                 Privacy Policy
               </Link>
+              .
+            </p>
+
+            <p className="relative z-10 mt-4 text-center text-caption text-muted-foreground">
+              {identity?.email ? (
+                <>
+                  Signed in as{" "}
+                  <span className="font-medium text-foreground">
+                    {identity.email}
+                  </span>
+                  . Wrong account?{" "}
+                </>
+              ) : (
+                <>Wrong account? </>
+              )}
+              <button
+                type="button"
+                onClick={() => handleSwitchAccount("/auth/sign-in")}
+                disabled={signingOut}
+                className="font-semibold text-foreground hover:underline disabled:opacity-70"
+              >
+                Back to sign in
+              </button>{" "}
+              or{" "}
+              <button
+                type="button"
+                onClick={() => handleSwitchAccount("/auth/sign-up")}
+                disabled={signingOut}
+                className="font-semibold text-foreground hover:underline disabled:opacity-70"
+              >
+                Create a new account
+              </button>
               .
             </p>
           </div>
